@@ -1,7 +1,7 @@
+import { prefetchSuggestions } from "../api"; // Only import what you actually use
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect } from 'react';
-import axios from 'axios';    
+import React, { useEffect } from 'react';    
 import {
   ShieldCheck,
   FileText,
@@ -22,21 +22,18 @@ import {
 
 const Dashboard = ({ data, setSuggestions, setIsSuggestionsLoading, suggestions }) => {
   const navigate = useNavigate();
+
   /* --------------------- SUGGESTIONS PREFETCH ---------------------- */
-  // MOVE THIS TO THE TOP (BEFORE THE !DATA CHECK)
   useEffect(() => {
-    // We handle the "no data" check inside the hook instead
     if (!data) return;
 
-    const prefetchSuggestions = async () => {
+    const fetchSuggestions = async () => {
       if (setSuggestions && suggestions?.length === 0) {
         setIsSuggestionsLoading?.(true);
         try {
-          const res = await axios.post(
-            'http://localhost:8000/documents/suggest',
-            { case_data: data }
-          );
-          setSuggestions(res.data.suggestions);
+          // Use centralized function from api.js
+          const suggestionData = await prefetchSuggestions(data);
+          setSuggestions(suggestionData);
         } catch (e) {
           console.error("Prefetching document titles failed:", e);
         } finally {
@@ -45,7 +42,7 @@ const Dashboard = ({ data, setSuggestions, setIsSuggestionsLoading, suggestions 
       }
     };
 
-    prefetchSuggestions();
+    fetchSuggestions();
   }, [data, suggestions, setSuggestions, setIsSuggestionsLoading]);
 
   /* ---------------------------- EMPTY STATE ---------------------------- */

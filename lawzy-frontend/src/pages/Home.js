@@ -12,28 +12,29 @@ import {
   Paperclip,
   CheckCircle
 } from 'lucide-react';
-import axios from 'axios';
+import { analyzeQuery } from '../api'; // centralized API
 
 const Home = ({ setAnalysisData }) => {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  /* --------------------- HANDLE ANALYZE ---------------------- */
   const handleAnalyze = async (e) => {
     e.preventDefault();
     if (!query.trim()) return;
 
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:8000/analyze', { query });
-      setAnalysisData(response.data);
+      const response = await analyzeQuery(query); // centralized API
+      setAnalysisData(response);
       setTimeout(() => navigate('/dashboard'), 500);
     } catch (err) {
       alert("Error contacting Lawzy Backend. Ensure FastAPI is running.");
+    } finally {
       setLoading(false);
     }
   };
-
   // Animation Variants
   const containerVars = {
     hidden: { opacity: 0 },
