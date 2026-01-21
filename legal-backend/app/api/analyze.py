@@ -75,6 +75,8 @@ async def analyze_legal_issue(request: AnalyzeRequest):
       "missing_information": ["string"],
       "limitations": ["string"]
     }}
+    Output MUST be valid JSON only.
+    DO NOT add markdown, headings, or commentary.
     """
     final_analysis = await call_openrouter(prompt)
     # Inject metadata
