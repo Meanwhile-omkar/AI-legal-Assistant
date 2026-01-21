@@ -3,9 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import { 
   ChevronRight, 
-  RotateCcw, 
   ShieldAlert, 
-  Info, 
   HelpCircle, 
   Zap, 
   ShieldCheck, 

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import { 
-  FileText, Download, Loader2, CheckCircle, PenTool, 
-  Sparkles, FileCheck, Printer, ChevronLeft, Cpu
+  FileText, Loader2, CheckCircle, Cpu
 } from 'lucide-react';
 import jsPDF from 'jspdf';
 

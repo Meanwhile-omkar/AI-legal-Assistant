@@ -7,9 +7,7 @@ import {
   FileText,
   GraduationCap,
   ArrowRight,
-  ListChecks,
   HelpCircle,
-  Scale,
   Info,
   CheckCircle2,
   XCircle,
@@ -82,12 +80,6 @@ const Dashboard = ({ data, setSuggestions, setIsSuggestionsLoading, suggestions 
     show: { y: 0, opacity: 1 }
   };
 
-  /* --------------------- SIGNAL CATEGORY GROUPING ---------------------- */
-  const signalCategories = {
-    'Case Nature': ['is_criminal', 'is_civil', 'is_cognizable'],
-    'Evidence & Harm': ['has_injury', 'physical_evidence', 'witnesses_available'],
-    'Urgency Signals': ['immediate_danger', 'time_sensitive', 'monetary_loss']
-  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0c] text-white p-4 md:p-8 pb-[260px] relative overflow-hidden">
